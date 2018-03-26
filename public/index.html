@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"-->
+            <!--integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"-->
+            <!--crossorigin="anonymous"></script>-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="jquery-1.12.0.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body background="background_cell_solid_color_line_51840_1920x1080.jpg">
+<h1 id="h1">
+    Shorten Your URL
+</h1>
+<div class="input-group mb-3" style="width: 29%"   id="input_div" >
+    <input type="text" id="input_url" class="form-control" placeholder="Enter URL" aria-label="Enter URL" name="url"
+           aria-describedby="basic-addon2">
+    <div class="input-group-append">
+        <button id="submit" class="btn btn-success" type="button">Submit</button>
+    </div>
+
+    <div id="shortcode"></div>
+</div>
+<!--<input id="input_url" type="text" placeholder="Enter URL" name="url">-->
+<!--<input id="submit" type="submit">-->
+<!--<p></p>-->
+<!--<div id="shortcode"></div>-->
+<!--<div>Enter URL</div>-->
+<script>
+    $(function () {
+        $('#submit').click(function () {
+            const url = $('#input_url').val()
+            $.post('/api/v1/shorten', {
+                    url: url
+                }, function (data) {
+                    $('#shortcode').text("ShortURL: " + window.location.href + data);
+                }
+            )
+        })
+    })
+
+</script>
+
+</body>
+</html>
